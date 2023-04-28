@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello world</title>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+</head>
+<body>
+    <p>Hello World </p>
+
+    <script>
+        let socket = io();   // default namespace with '/'
+        // let socket = io("/custom-namespace");   // custom namespace with '/custom-namespace'
+        // socket.on('myCustomEvent', (data) => {
+        //     document.write(data.description);
+        // });
+
+        // First scenario
+        // socket.on('broadcast', (data) => {
+        //     document.body.innerHTML = '';
+        //     document.write(data.message);
+        // })
+
+        // Second scenario
+        // socket.on('newUserConnect', (data) => {
+        //     document.body.innerHTML = '';
+        //     document.write(data.message);
+        // })
+
+        // connecting with room 
+        socket.on('connectedRoom', (data) => {
+            document.body.innerHTML = '';
+            document.write(data);
+        })
+
+
+        // Handle errors on the client-side
+        socket.on('connect_error', (err) => {
+            console.log('Connect error:', err);
+        });
+
+        socket.on('connect_timeout', () => {
+            console.log('Connect timeout');
+        });
+        
+    </script>
+</body>
+</html>
